@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import LogItem from './LogItem';
+import Preloader from '../layout/Preloader';
 
 const Logs = () => {
   const [logs, setLogs] = useState([]); // logs state
@@ -6,14 +8,8 @@ const Logs = () => {
 
   // get logs
   useEffect(() => {
-    // set loading state
-    setLoading(true);
-
     // get logs
     getLogs();
-
-    // set loading state
-    setLoading(false);
 
     // eslint-disable-next-line
   }, []);
@@ -27,7 +23,7 @@ const Logs = () => {
   };
   // If loading is true, show loading spinner
   if (loading) {
-    return <h4>Loading...</h4>;
+    return <Preloader />;
   }
 
   return (
@@ -38,7 +34,7 @@ const Logs = () => {
       {!loading && logs.length === 0 ? (
         <p className="center">No logs to show...</p>
       ) : (
-        logs.map((log) => <li className="collection-item"> {log.message} </li>)
+        logs.map((log) => <LogItem log={log} key={log.id} />)
       )}
     </ul>
   );
