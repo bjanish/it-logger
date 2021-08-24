@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 // AddLogModal component
-const AddLogModal = () => {
+const EditLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -15,20 +15,21 @@ const AddLogModal = () => {
       });
     } else {
       console.log(message, attention, tech);
-      // Clear Fields
+      // Clear fields
       setMessage('');
       setTech('');
       setAttention(false);
-      // Close Modal
       M.toast({
-        html: 'Log added by ' + tech,
+        html: 'Log updated by ' + tech,
         classes: 'blue darken-3 rounded',
       });
+      // Close modal
+      M.Modal.getInstance(document.querySelector('#edit-log-modal')).close();
     }
   };
 
   return (
-    <div id="add-log-modal" className="modal" style={modalStyle}>
+    <div id="edit-log-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
         <h4>Enter System Log</h4>
         <div className="row">
@@ -111,4 +112,4 @@ const modalStyle = {
   //   alignItems: 'center',
 };
 
-export default AddLogModal;
+export default EditLogModal;
