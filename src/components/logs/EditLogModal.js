@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updateLog } from '../../actions/logActions';
 
 // AddLogModal component
-const EditLogModal = () => {
+const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+  }, [current]);
 
   const onSubmit = () => {
     if (message === '' || tech === '') {
@@ -14,15 +25,24 @@ const EditLogModal = () => {
         classes: '#c62828 red darken-3 rounded',
       });
     } else {
-      console.log(message, attention, tech);
+      const updatedLog = {
+        id: current.id,
+        message,
+        attention,
+        tech,
+        date: new Date(),
+      };
+
+      updateLog(updatedLog);
+      M.toast({
+        html: `Log updated by ${tech}`,
+        classes: 'blue darken-3 rounded',
+      });
       // Clear fields
       setMessage('');
       setTech('');
       setAttention(false);
-      M.toast({
-        html: 'Log updated by ' + tech,
-        classes: 'blue darken-3 rounded',
-      });
+
       // Close modal
       M.Modal.getInstance(document.querySelector('#edit-log-modal')).close();
     }
@@ -40,9 +60,6 @@ const EditLogModal = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <label htmlFor="message" className="active">
-              Log Message
-            </label>
           </div>
         </div>
         <div className="row">
@@ -104,12 +121,18 @@ const EditLogModal = () => {
   );
 };
 
+EditLogModal.propTypes = {
+  updateLog: PropTypes.func.isRequired,
+  current: PropTypes.object,
+};
+
+const mapStateToProps = (state) => ({
+  current: state.log.current,
+});
+
 const modalStyle = {
   width: '75%',
   height: '75%',
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
 };
 
-export default EditLogModal;
+export default connect(mapStateToProps, { updateLog })(EditLogModal);

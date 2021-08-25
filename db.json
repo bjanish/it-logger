@@ -1,25 +1,25 @@
 {
   "logs": [
     {
-      "message": "fix my computer",
-      "attention": false,
+      "id": 3,
+      "message": "fix my computer NOW!",
+      "attention": true,
       "tech": "John Doe",
-      "date": "2021-08-25T18:45:14.967Z",
-      "id": 3
+      "date": "2021-08-25T20:55:28.981Z"
     },
     {
-      "message": "Get something to eat.",
+      "id": 4,
+      "message": "Get something to eat. McDonaldssssssss",
       "attention": true,
-      "tech": "Jane Doe",
-      "date": "2021-08-25T19:47:07.304Z",
-      "id": 4
+      "tech": "John Doe",
+      "date": "2021-08-25T20:57:15.544Z"
     },
     {
+      "id": 5,
       "message": "dummy message",
-      "attention": true,
+      "attention": false,
       "tech": "Juan",
-      "date": "2021-08-25T20:00:07.928Z",
-      "id": 5
+      "date": "2021-08-25T20:58:33.070Z"
     }
   ],
   "techs": [
