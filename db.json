@@ -1,25 +1,25 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed hard drive on workstation 005",
-      "attention": false,
-      "date": "03-21-2021",
-      "tech": "Sam Smith"
-    },
-    {
-      "id": 2,
-      "message": "Workstation 007 not posting",
+      "message": "Upgrade OS",
       "attention": true,
-      "date": "03-24-2021",
-      "tech": "John Doe"
+      "tech": "Juan",
+      "date": "2021-08-25T03:59:41.014Z",
+      "id": 1
     },
     {
-      "id": 3,
-      "message": "Changed memory on workstation 050",
+      "message": "Fix BSOD",
+      "attention": true,
+      "tech": "Juan",
+      "date": "2021-08-25T04:00:39.852Z",
+      "id": 2
+    },
+    {
+      "message": "fix my computer",
       "attention": false,
-      "date": "03-25-2021",
-      "tech": "Sara Wilson"
+      "tech": "John Doe",
+      "date": "2021-08-25T18:45:14.967Z",
+      "id": 3
     }
   ],
   "techs": [
